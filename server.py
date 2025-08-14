@@ -1,9 +1,9 @@
+```python
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 import openai
 import os
 
-# A chave ficará como variável de ambiente no Render
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI()
@@ -27,7 +27,7 @@ async def review_script(file: UploadFile = File(...)):
     code = content.decode("utf-8")
     response = openai.Completion.create(
         model="gpt-4o",
-        prompt=f"Revise e explique este script do Roblox Studio:\n\n{code}",
+        prompt=f"Revise e explique este script do Roblox Studio:\ncode",
         max_tokens=800,
         temperature=0
     )
@@ -36,3 +36,12 @@ async def review_script(file: UploadFile = File(...)):
 @app.get("/")
 def root():
     return {"status": "API Roblox IA funcionando!"}
+
+if name == "main":
+    import uvicorn
+
+port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
+
+---
