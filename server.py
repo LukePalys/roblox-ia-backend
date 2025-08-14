@@ -1,4 +1,4 @@
-```python
+python
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 import openai
@@ -30,14 +30,15 @@ async def review_script(file: UploadFile = File(...)):
         prompt=f"Revise e explique este script do Roblox Studio:\ncode",
         max_tokens=800,
         temperature=0
-    )
-return {"result": response.choices[0].text.strip()}
+    )
+    return {"result": response.choices[0].text.strip()}
 
 @app.get("/")
 def root():
     return {"status": "API Roblox IA funcionando!"}
 
-if name == "main":
+if _name_ == "_main_":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
