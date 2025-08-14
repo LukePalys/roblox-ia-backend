@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 import openai
 import os
+import uvicorn
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -37,6 +38,6 @@ def root():
     return {"status": "API Roblox IA funcionando!"}
 
 if _name_ == "_main_":
-    import uvicorn
     port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
